@@ -86,8 +86,8 @@
 		<div class="row">
 			<div class="col-xl-9 col-lg-11 pb-0 rounded text-center text-light mx-auto">
 				<div class="rounded-top p-2 ml-sm-2 ml-xs-2 mt-2 mr-sm-2 mr-xs-2 border-primary border-top border-left border-right">
-					<canvas  id="chartOverallResults" style="display:none"></canvas>
-					<image id="imageResults"></canvas>
+					<canvas  id="chartOverallResults"></canvas>
+					<!--<image id="imageResults"></canvas>-->
 				</div>
 			</div>
 		</div>
@@ -166,7 +166,7 @@
 
 <script>
 
-	Chart.defaults.global.animation.duration = 0;
+	Chart.defaults.global.animation.duration = 3000;
 
 	new Chart(document.getElementById("chartOverallResults"), {
 		type: 'radar',
@@ -228,8 +228,8 @@
 				}
 		}
 	);
-	var imageURL = document.getElementById('chartOverallResults').toDataURL();
-    $('#imageResults').attr('src', imageURL);
+	//var imageURL = document.getElementById('chartOverallResults').toDataURL();
+    //$('#imageResults').attr('src', imageURL);
 
 </script>
 

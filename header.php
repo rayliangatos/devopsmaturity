@@ -171,7 +171,7 @@
 		<link rel="stylesheet" href="fontawesome/css/all.css" rel="stylesheet">
 
 		<title>DevOps Maturity Assessment</title>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<style>
 			#bigwrapper {
