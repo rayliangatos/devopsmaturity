@@ -1,0 +1,8 @@
+{
+    "require": {
+        "knplabs/knp-snappy": "^1.2",
+        "h4cc/wkhtmltopdf-amd64": "^0.12.4",
+        "phpmailer/phpmailer": "^6.1",
+        "league/oauth2-google": "^3.0"
+    }
+}

@@ -41,3 +41,8 @@ handlers:
   script: furtherInformation.php
   secure: always
   redirect_http_response_code: 301
+
+- url: /sendEmail.*$
+  script: sendEmail.php
+  secure: always
+  redirect_http_response_code: 301

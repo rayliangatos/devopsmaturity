@@ -2,14 +2,6 @@
 
 	/* Copyright 2018 Atos SE and Worldline
 	 * Licensed under MIT (https://github.com/atosorigin/DevOpsMaturityAssessment/blob/master/LICENSE) */
-	use PHPMailer\PHPMailer\PHPMailer;
-	use PHPMailer\PHPMailer\SMTP;
-	use PHPMailer\PHPMailer\Exception;
-
-	require 'PHPMailer/Exception.php';
-	require 'PHPMailer/PHPMailer.php';
-	require 'PHPMailer/SMTP.php';
-
 	$isForm = FALSE;
 	$activePage = 'Results';
 
@@ -94,7 +86,8 @@
 		<div class="row">
 			<div class="col-xl-9 col-lg-11 pb-0 rounded text-center text-light mx-auto">
 				<div class="rounded-top p-2 ml-sm-2 ml-xs-2 mt-2 mr-sm-2 mr-xs-2 border-primary border-top border-left border-right">
-					<canvas  id="chartOverallResults"></canvas>
+					<canvas  id="chartOverallResults" style="display:none"></canvas>
+					<image id="imageResults"></canvas>
 				</div>
 			</div>
 		</div>
@@ -173,7 +166,7 @@
 
 <script>
 
-	Chart.defaults.global.animation.duration = 3000;
+	Chart.defaults.global.animation.duration = 0;
 
 	new Chart(document.getElementById("chartOverallResults"), {
 		type: 'radar',
@@ -235,75 +228,12 @@
 				}
 		}
 	);
+	var imageURL = document.getElementById('chartOverallResults').toDataURL();
+    $('#imageResults').attr('src', imageURL);
 
 </script>
 
 <?php
-	$name = $_POST["name"];
-	$organisation = $_POST["organisation"];
-	$contactEmail = $_POST["contactEmail"];
-	$telephoneNumber = $_POST["telephoneNumber"];
-	$furtherContact = $_POST["furtherContact"];
-    //print  "name is:  $name \r\n";
-    //echo "organisation is: " . $organisation;
-    //echo "contactEmail is: " . $contactEmail;
-    //echo "telephoneNumber is: " . $telephoneNumber;
-    //echo "furtherContact is: " . $furtherContact;
-    //ini_set("SMTP", "aspmx.l.google.com");
-    //ini_set("smtp_port","25");
-    //ini_set("sendmail_from", "raymondwgliang@gmail.com");
-    //mail($contactEmail,"My subject",$name);
-
-		$mail = new PHPMailer(true);
-
-		try {
-		    //Server settings
-		    $mail->SMTPDebug = SMTP::DEBUG_OFF;                      // Enable verbose debug output
-		    $mail->isSMTP();                                            // Send using SMTP
-		    $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
-		    $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-		    $mail->Username   = 'flairbpss@gmail.com';                     // SMTP username
-		    $mail->Password   = 'Bpss2020!';                               // SMTP password
-		    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
-		    $mail->Port       = 465;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
-
-		    //Recipients
-		    $mail->setFrom('flairbpss@gmail.com', 'Atos DevOps Maturity Assessment');
-		    //$mail->addAddress('ray.liang@atos.net');
-			//$mail->addCC('hiwild@hotmail.com');
-			$mail->addCC('ray.liang@atos.net');
-			$mail->addCC('dorian.seabrook@atos.net');
-			//$mail->addBCC('hiwild@hotmail.com');
-			//$mail->addBCC($contactEmail);
-		    //$mail->addBCC('dl-bps-flair-coe@atos.net');
-
-		    // Attachments
-		    //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
-		    //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
-
-		    // Content
-		    $mail->isHTML(true);                                  // Set email format to HTML
-		    $mail->Subject = $name.' has submitted a devops maturity assessment';
-		    $mail->Body    = '<p>The user below has submitted a devops maturity assessment</p>'
-				.'<p>Name:'.$name.'</p>'
-				.'<p>Organisation:'.$organisation.'</p>'
-				.'<p>Email:'.$contactEmail.'</p>'
-				.'<p>Telephone Number:'.$telephoneNumber.'</p>'
-				.'<p>Here are their devops maturity assessment reports:</p>'
-				.'<hr>'
-				.$preAmble
-				.'<p>'.array_keys($resultsSummary)[0].' (Score:'. $resultsSummary[array_keys($resultsSummary)[0]]['ScorePercentage'] . '%)</p>'
-				.'<p>'.array_keys($resultsSummary)[1].' (Score:'. $resultsSummary[array_keys($resultsSummary)[1]]['ScorePercentage'] . '%)</p>'
-				.'<p>'.array_keys($resultsSummary)[2].' (Score:'. $resultsSummary[array_keys($resultsSummary)[2]]['ScorePercentage'] . '%)</p>';
-		    $mail->AltBody = $name.' has submitted a devops maturity assessment';
-				//echo "furtherContact is: " . $furtherContact;
-				if($furtherContact == 'yes'){
-		    	$mail->send();
-				}
-		    //echo 'Message has been sent';
-		} catch (Exception $e) {
-		    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-		}
 
 	require 'footer.php';
 

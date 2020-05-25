@@ -68,8 +68,8 @@
               <div class="text-center col-lg-12">
                   <div class="btn-group btn-group-justified">
                       <div class="btn-group" role="group">
-                          <button class="btn btn-primary" onclick="previous()">Previous</button>
-                          <button class="btn btn-primary" onclick="viewResults()">View Results</button>
+                          <button type="submit" class="btn btn-primary" onclick="previous()">Previous</button>
+                          <button id="viewResults" type="submit" class="btn btn-primary">View Results</button>
                       </div>
                   </div>
               </div>
@@ -77,39 +77,47 @@
       </div>
 	</form>
 </div>
-<script>
-function previous(){
-    $('form').attr('action', 'section-standardisation');
-}
+<script type="text/javascript">
+ $(document).ready(function() {
+     $("#viewResults").click(function(){
+         //alert("button");
+				 var name = $('#name').val();
+				 var contactEmail = $('#contactEmail').val();
+				 var organisation = $('#organisation').val();
+				 var telephoneNumber = $('#telephoneNumber').val();
+				 var furtherContact = $("input[name='furtherContact']:checked"). val();
+				 $('#contactForm').attr('action', 'results');
+				 sendEmail(name,contactEmail,organisation,telephoneNumber,furtherContact);
+     });
+ });
 
-function viewResults(){
-    var isShowForm = $('input[name=furtherContact]:checked', '#contactForm').val();
-    var name = $("#name").val();
-    var contactEmail = $("#contactEmail").val();
-    if (isShowForm == undefined) {
-        return false;
-    } else if (isShowForm == 'yes') {
-        if(name==''){
-            $("#name").prop('required',true);
-            return false;
-        } else if(contactEmail==''){
-            $("#contactEmail").prop('required',true);
-            return false;
-        } else{
-            $('form').attr('action', 'results');
-        }
-    } else{
-        $('form').attr('action', 'results');
-    }
-}
+ var sendEmail = function(name, contactEmail,organisation,telephoneNumber,furtherContact) {
+	console.log("sendEmail");
+	console.log(name);
+	console.log(contactEmail);
+	console.log(organisation);
+	console.log(telephoneNumber);
+ 	$.ajax({
+ 			 url: 'sendEmail',
+ 			 type: 'POST',
+ 			 data: {"name":name, "contactEmail":contactEmail, "organisation":organisation, "telephoneNumber":telephoneNumber,"furtherContact":furtherContact},
+ 			 success: function(data) {
+ 					 console.log(data); // Inspect this in your console
+ 			 }
+ 		 });
+ };
 
-function showForm(isShowForm){
-    if (isShowForm){
-        $('#contacts').removeClass('invisible');
-    } else  {
-        $('#contacts').addClass('invisible');
-    }
-}
+ function previous(){
+		 $('form').attr('action', 'section-standardisation');
+ }
+
+ function showForm(isShowForm){
+		 if (isShowForm){
+				 $('#contacts').removeClass('invisible');
+		 } else  {
+				 $('#contacts').addClass('invisible');
+		 }
+ }
 </script>
 <?php
 	require 'footer.php';
