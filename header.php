@@ -200,7 +200,7 @@
 
 	<nav class="navbar navbar-dark bg-primary fixed-top navbar-expand-md form-group">
 	    <div class="logo_bar">
-            <img src="logo_WHITE.png" alt="Atos Logo" style="height:35px;width=86px;margin-bottom:6px;">
+            <img src="http://35.178.92.127/devopsmaturity/Logo_WHITE.png" alt="Atos Logo" style="height:35px;width=86px;margin-bottom:6px;">
             <a href="about" class="navbar-brand">DevOps Maturity Assessment</a>
     	</div>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
