@@ -182,15 +182,27 @@
 			@media (max-width: 355px) {
 				#bigwrapper { padding-top: 100px; }
 			}
-
+            .atos-brand {
+                background-image: url("atos-brand.png");
+                background-repeat: no-repeat;
+                background-position: left;
+            }
+            .logo_bar {
+                background-color: #0066A1;
+                overflow: hidden;
+                float: left;
+            }
 		</style>
 
 	</head>
 
 	<body id="bigwrapper">
 
-	<nav class="navbar navbar-dark bg-primary fixed-top navbar-expand-md form-group" ">
-		<a href="about" class="navbar-brand">DevOps Maturity Assessment</a>
+	<nav class="navbar navbar-dark bg-primary fixed-top navbar-expand-md form-group">
+	    <div class="logo_bar">
+            <img src="logo_WHITE.png" alt="Atos Logo" style="height:35px;width=86px;margin-bottom:6px;">
+            <a href="about" class="navbar-brand">DevOps Maturity Assessment</a>
+    	</div>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
 			<span class="navbar-toggler-icon"></span>
 		</button>
