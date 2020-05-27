@@ -80,23 +80,24 @@
 <script type="text/javascript">
  $(document).ready(function() {
      $("#viewResults").click(function(){
-         //alert("button");
-				 var name = $('#name').val();
-				 var contactEmail = $('#contactEmail').val();
-				 var organisation = $('#organisation').val();
-				 var telephoneNumber = $('#telephoneNumber').val();
-				 var furtherContact = $("input[name='furtherContact']:checked"). val();
-				 $('#contactForm').attr('action', 'results');
-				 sendEmail(name,contactEmail,organisation,telephoneNumber,furtherContact);
+         var name = $('#name').val();
+         var contactEmail = $('#contactEmail').val();
+         var organisation = $('#organisation').val();
+         var telephoneNumber = $('#telephoneNumber').val();
+         var furtherContact = $("input[name='furtherContact']:checked"). val();
+         $('#contactForm').attr('action', 'results');
+         if (furtherContact == 'yes' && name !='' && contactEmail !='') {
+            sendEmail(name,contactEmail,organisation,telephoneNumber,furtherContact);
+         }
      });
  });
 
  var sendEmail = function(name, contactEmail,organisation,telephoneNumber,furtherContact) {
 	console.log("sendEmail");
-	console.log(name);
-	console.log(contactEmail);
-	console.log(organisation);
-	console.log(telephoneNumber);
+	//console.log(name);
+	//console.log(contactEmail);
+	//console.log(organisation);
+	//console.log(telephoneNumber);
  	$.ajax({
  			 url: 'sendEmail',
  			 type: 'POST',
@@ -114,8 +115,12 @@
  function showForm(isShowForm){
 		 if (isShowForm){
 				 $('#contacts').removeClass('invisible');
+				 $('#name').prop('required',true);
+				 $('#contactEmail').prop('required',true);
 		 } else  {
 				 $('#contacts').addClass('invisible');
+				 $('#name').removeAttr('required');
+				 $('#contactEmail').removeAttr('required');
 		 }
  }
 </script>
