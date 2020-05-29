@@ -73,7 +73,7 @@ try {
     $mail->addCC('ray.liang@atos.net');
     $mail->addCC('dorian.seabrook@atos.net');
     $mail->addCC('justin.healey@atos.net');
-    $mail->addBCC('hiwild@hotmail.com');
+    //$mail->addBCC('hiwild@hotmail.com');
     //$mail->addBCC('dl-bps-flair-coe@atos.net');
 
     // Attachments
